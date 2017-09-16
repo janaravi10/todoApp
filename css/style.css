@@ -56,7 +56,7 @@ body {
     }
 }
 /*==============codes for mobile=============*/
-@media screen and (max-width:400px){
+@media screen and (max-width:450px){
     #getcontent{
     order:1;
   width: 90%;
@@ -81,7 +81,7 @@ body {
 }
 /*==============codes for mobile=============*/
 /*==============codes for tabet,desktop=============*/
-@media screen and (min-width:401px){
+@media screen and (min-width:451px){
     section{
         width: 50vw;
     }
