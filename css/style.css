@@ -1,7 +1,21 @@
 * {
+    font-family: verdana;
     box-sizing: border-box;
 }
-button{
+.dl {
+    text-decoration: none;
+    color: burlywood;
+    margin-right: auto;
+    margin-left: 10px;
+}
+.dl:hover {
+    text-decoration: none;
+    color: #e1b3a2;
+}
+.dl span {
+    color: darkorchid;
+}
+button {
     margin-top: 10px;
 }
 body {
@@ -17,18 +31,24 @@ body {
 }
 #header h1 {
     margin: 0px;
-     line-height: 50px;
+    line-height: 50px;
     color: white;
 }
 .inputcontainer {
     display: flex;
     flex-direction: row;
 }
-.del{
-    margin-left: 10px;
-    align-self:flex-start; 
+.del {
+    margin: 5px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }
-.well{
+.well p{
+    margin-left: 10px;
+}
+.well {
+    flex-wrap: wrap-reverse;
     word-break: break-all;
     display: flex;
     position: relative;
@@ -40,70 +60,75 @@ body {
     animation-duration: 1s;
     animation-direction: normal;
 }
- .inputcontainer{
-        display: flex;
-        flex-direction: row;
-    }
-    .inputcontainer label{
-        align-self: center;
-    }
-@keyframes well{
-    from{
+.inputcontainer {
+    display: flex;
+    flex-direction: row;
+}
+.inputcontainer label {
+    align-self: center;
+}
+@keyframes well {
+    from {
         opacity: 0;
     }
-    to{
-       opacity: 1;
+    to {
+        opacity: 1;
     }
 }
+
 /*==============codes for mobile=============*/
-@media screen and (max-width:450px){
-    #getcontent{
-    order:1;
-  width: 90%;
-    margin: 10px auto;
-}
-    #showcontent{
-    order: 2;
-}
+
+@media screen and (max-width:600px) {
+    #getcontent {
+        order: 1;
+        width: 90%;
+        margin: 10px auto;
+    }
+    #showcontent {
+        order: 2;
+    }
     #container {
-    display: flex;
-    flex-direction: column;
-}
-  #inputdate,
-#inputtime {
-    width: 100%;
-    margin: 10px auto;
-}  
+        display: flex;
+        flex-direction: column;
+    }
+    #inputdeadline {
+        width: 100%;
+        margin: 10px auto;
+    }
     #myform textarea {
-    width: 100%;
-    resize: none;
+        width: 100%;
+        resize: none;
+    }
 }
-}
+
 /*==============codes for mobile=============*/
+
+
 /*==============codes for tabet,desktop=============*/
-@media screen and (min-width:451px){
-    section{
+
+@media screen and (min-width:601px) {
+    section {
         width: 50vw;
     }
     #myform textarea {
-    width: 90%;
-    margin: 10px auto;
-    resize: none;
-}
-    #getcontent{
-    order:2;
-}
-    #showcontent{
-    order:1;
-}
+        width: 90%;
+        margin: 10px auto;
+        resize: none;
+    }
+    #getcontent {
+        order: 2;
+    }
+    #showcontent {
+        order: 1;
+    }
     #container {
-    display: flex;
-    flex-direction:row;
+        display: flex;
+        flex-direction: row;
+    }
+    #inputdeadline {
+        width: 50%;
+        margin: 9px;
+    }
 }
-    #inputdate,
-#inputtime {
-    width: 50%;
-    margin: 9px;
-} 
-}
+
 /*==============codes for tabet,desktop=============*/

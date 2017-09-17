@@ -2,29 +2,44 @@ var myform = document.getElementById("myform");
 //myform.addEventListener("submit", saveInfo);
 window.addEventListener("load", showTodoItems);
 var saveBtn = document.getElementById("submit");
-saveBtn.addEventListener("click",saveInfo);
-var cancelBtn  =document.getElementById("cancel");
-cancelBtn.addEventListener("click",clearForm)
-function clearForm(e){
+saveBtn.addEventListener("click", saveInfo);
+var cancelBtn = document.getElementById("cancel");
+cancelBtn.addEventListener("click", clearForm);
+function clearForm(e) {
     myform.reset();
 }
+
 function saveInfo(e) {
     e.preventDefault();
+    var dateValue = document.getElementById("inputdeadline").value;
     var todoValue = document.getElementById("textarea").value;
-    var todoObj = {
-        todoValue
-    }
-    if(!(todoValue)){
+    
+    if ( dateValue > 24 || dateValue <= 0) {
         myform.reset();
         return false;
     }
+    var todoObj = {
+        todoValue,
+        dateValue
+    }
+    if (!(todoValue)) {
+        myform.reset();
+        return false;
+    }
+    
     if (localStorage.getItem("localTodoItem") === null) {
         var todoArray = [];
         todoArray.push(todoObj);
+        todoArray.sort(function (a, b) {
+            return a.dateValue - b.dateValue;
+        });
         localStorage.setItem("localTodoItem", JSON.stringify(todoArray));
     } else {
         var todoArray = JSON.parse(localStorage.getItem("localTodoItem"));
         todoArray.push(todoObj);
+        todoArray.sort(function (a, b) {
+            return a.dateValue - b.dateValue;
+        });
         localStorage.setItem("localTodoItem", JSON.stringify(todoArray));
     }
     showTodoItems();
@@ -41,7 +56,6 @@ function deleteTodoItem(content) {
         showTodoItems();
     }
 }
-
 function showTodoItems() {
     var todoArray = JSON.parse(localStorage.getItem("localTodoItem"));
     var result = document.getElementById("showcontent");
@@ -49,7 +63,14 @@ function showTodoItems() {
     if (todoArray !== null) {
         for (let i = 0; i < todoArray.length; i++) {
             var content = todoArray[i].todoValue;
-            result.innerHTML += "<div class='well'>" + content + "<a class='btn btn-danger del' onclick ='deleteTodoItem( \"" + content + "\")'>" + "x" + "</a>" + "</div>";
+            var dl = todoArray[i].dateValue;
+          if(dl<=12){
+                ampm = " AM";
+            }else{
+                ampm = " PM"
+            }
+           dl =  dl % 12 || 12;
+            result.innerHTML += "<div class='well'>" +"<p>"+ content +"</p>"+ "<a class='dl'>" + '<span>Last hour to complete :</span>' + dl + ampm + "</a>" + "<a class='btn btn-danger del' onclick ='deleteTodoItem( \"" + content + "\")'>" + "x" + "</a>" + "</div>";
         }
     }
 }
